@@ -5,7 +5,10 @@
 
 # User-specific files
 *.rsuser
+*.csproj
 *.suo
+*.sln
+*.vcxproj
 *.user
 *.userosscache
 *.sln.docstates

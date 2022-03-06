@@ -23,6 +23,12 @@ namespace ImEditor.GameProject
         public OpenProjectView()
         {
             InitializeComponent();
+
+            Loaded += (s, e) =>
+            {
+                var item = ProjectListBox.ItemContainerGenerator.ContainerFromItem(ProjectListBox.SelectedItem) as ListBoxItem;
+                item?.Focus();
+            };
         }
 
         private void OpenButton_Click(object sender, RoutedEventArgs e)
@@ -39,6 +45,7 @@ namespace ImEditor.GameProject
             var win = Window.GetWindow(this);
             if (project != null)
             {
+                win.DataContext = project;
                 dialogResult = true;
             }
 

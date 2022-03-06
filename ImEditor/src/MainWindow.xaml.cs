@@ -30,8 +30,6 @@ namespace ImEditor
 
             Loaded += OnMainWindowLoaded;
             Closing += OnMainWindowClosing;
-
-            Project.Save(new Project("Name", @"C:\Users"));
         }
 
         private void OnMainWindowClosing(object sender, CancelEventArgs e)
@@ -48,7 +46,7 @@ namespace ImEditor
 
         private void OpenProjectBrowserDialog()
         {
-            var projectBrowser = new ProjectBrowserDialog();
+            var projectBrowser = new ProjectBrowserDialog { Owner = this };
 
             if (projectBrowser.ShowDialog() == false || projectBrowser.DataContext == null)
             {

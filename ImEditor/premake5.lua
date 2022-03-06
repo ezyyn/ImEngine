@@ -26,5 +26,6 @@ project "ImEditor"
 		"System.Xaml",
 		"System.Xml",
 		"System.Xml.Linq",
+		"System.Runtime.Serialization",
 		"WindowsBase",
 	}

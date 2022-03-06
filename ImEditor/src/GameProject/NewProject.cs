@@ -32,7 +32,7 @@ namespace ImEditor.GameProject
     {
         private string m_ProjectName = "NewProject";
         private string m_ProjectPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\ImEngineProjects\";
-        private readonly string m_TemplatePath = $@"{Environment.CurrentDirectory}\ProjectTemplates\";
+        private readonly string m_TemplatePath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\ImEngineEditor\ProjectTemplates\";
         private bool m_IsValid;
         private string m_ErrorMsg;
 

@@ -1,0 +1,32 @@
+﻿<Window x:Class="ImEditor.GameProject.ProjectBrowserDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        ResizeMode="NoResize"
+        xmlns:local="clr-namespace:ImEditor.GameProject"
+        WindowStartupLocation="CenterScreen"
+        Title="Project Browser" Height="600" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Center" 
+                    Margin="20">
+            <ToggleButton Content="Open Project" 
+                          x:Name="openProjectbutton" 
+                          FontSize="32"/>
+            <ToggleButton Content="New Project" 
+                          x:Name="newProjectbutton"
+                          FontSize="32" 
+                          Margin="30,0,0,0"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" x:Name="browserContent">
+            <local:OpenProjectView />
+            <local:NewProjectView />
+        </StackPanel>
+    </Grid>
+</Window>

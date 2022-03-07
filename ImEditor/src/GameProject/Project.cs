@@ -29,7 +29,7 @@ namespace ImEditor.GameProject
         [DataMember]
         public string Path { get; private set; }
 
-        public string FullPath => $"{Path}{Name}{Extension}";
+        public string FullPath => $@"{Path}{Name}\{Name}{Extension}";
 
         public ReadOnlyObservableCollection<Scene> Scenes { get; private set; }
 
@@ -66,10 +66,11 @@ namespace ImEditor.GameProject
             m_Scenes.Remove(scene);
         }
 
-        public ICommand AddScene { get; set; }
-        public ICommand RemoveScene { get; set; }
-        public ICommand Undo { get; set; }
-        public ICommand Redo { get; set; }
+        public ICommand AddSceneCommand { get; set; }
+        public ICommand RemoveSceneCommand { get; set; }
+        public ICommand UndoCommand { get; set; }
+        public ICommand RedoCommand { get; set; }
+        public ICommand SaveCommand { get; set; }
 
         public static Project Load(string file)
         {
@@ -94,7 +95,7 @@ namespace ImEditor.GameProject
 
             ActiveScene = Scenes.FirstOrDefault(x => x.Active);
 
-            AddScene = new RelayCommand<object>(x =>
+            AddSceneCommand = new RelayCommand<object>(x =>
             {
                 AddSceneInternal($"New Scene {m_Scenes.Count}");
                 var newScene = m_Scenes.Last();
@@ -106,7 +107,7 @@ namespace ImEditor.GameProject
                     ));
             });
 
-            RemoveScene = new RelayCommand<Scene>(x =>
+            RemoveSceneCommand = new RelayCommand<Scene>(x =>
             {
                 var index = m_Scenes.IndexOf(x);
                 RemoveSceneInternal(x);
@@ -118,8 +119,10 @@ namespace ImEditor.GameProject
                      ));
             }, x => !x.Active);
 
-            Undo = new RelayCommand<object>(x => UndoRedo.Undo());
-            Redo = new RelayCommand<object>(x => UndoRedo.Redo());
+            UndoCommand = new RelayCommand<object>(x => UndoRedo.Undo());
+            RedoCommand = new RelayCommand<object>(x => UndoRedo.Redo());
+
+            SaveCommand = new RelayCommand<object>(x => Save(this));
         }
 
         public void Unload()

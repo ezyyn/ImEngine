@@ -41,6 +41,7 @@ namespace ImEditor.Utilities
     }
     public class UndoRedo
     {
+        private bool m_EnableAdd = true;
         private readonly ObservableCollection<IUndoRedo> m_UndoList = new ObservableCollection<IUndoRedo>();
         private readonly ObservableCollection<IUndoRedo> m_RedoList = new ObservableCollection<IUndoRedo>();
 
@@ -55,8 +56,11 @@ namespace ImEditor.Utilities
 
         public void Add(IUndoRedo cmd)
         {
-            m_UndoList.Add(cmd);
-            m_RedoList.Clear();
+            if(m_EnableAdd)
+            {
+                m_UndoList.Add(cmd);
+                m_RedoList.Clear();
+            }
         }
 
         public void Undo()
@@ -65,18 +69,22 @@ namespace ImEditor.Utilities
             {
                 var last = m_UndoList.Last();
                 m_UndoList.RemoveAt(m_UndoList.Count - 1);
+                m_EnableAdd = false;
                 last.Undo();
+                m_EnableAdd = true;
                 m_RedoList.Insert(0, last);
             }
         }
 
         public void Redo()
         {
-            if (m_UndoList.Any())
+            if (m_RedoList.Any())
             {
                 var first = m_UndoList.First();
                 m_RedoList.RemoveAt(0);
+                m_EnableAdd = false;
                 first.Redo();
+                m_EnableAdd= true;
                 m_UndoList.Add(first);
             }
         }

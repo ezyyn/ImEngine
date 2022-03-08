@@ -27,6 +27,19 @@ namespace ImEditor.GameProject
             newProjectbutton.Click += OnToggleButton_Click;
 
             openProjectbutton.IsChecked = true;
+
+            Loaded += PBD_Loaded;
+        }
+
+        private void PBD_Loaded(object sender, RoutedEventArgs e)
+        {
+            Loaded -= PBD_Loaded;
+            if(!OpenProject.Projects.Any())
+            {
+                openProjectbutton.IsEnabled = false;
+                openProjectView.Visibility = Visibility.Hidden;
+                OnToggleButton_Click(newProjectbutton, new RoutedEventArgs());
+            }
         }
 
         private void OnToggleButton_Click(object sender, RoutedEventArgs e)

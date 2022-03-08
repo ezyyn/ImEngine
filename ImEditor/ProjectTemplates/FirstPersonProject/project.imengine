@@ -7,7 +7,7 @@
 	<Scenes>
 		<Scene z:Id="i2">
 			<Active>true</Active>
-			<Entities xmlns:a="http://schemas.datacontract.org/2004/07/ImEditor.Components">
+			<Entities xmlns:a="http://schemas.datacontract.org/2004/07/ImEditor.Components"/>
 			<Name>Default Scene</Name>
 			<Project z:Ref="i1"/>
 		</Scene>

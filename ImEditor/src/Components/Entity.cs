@@ -69,9 +69,18 @@ namespace ImEditor.Components
                 var oldName = m_Name;
                 Name = x;
 
-                Project.UndoRedo.Add(new UndoRedoAction(nameof(Name)));
-            }
+                Project.UndoRedo.Add(new UndoRedoAction(nameof(Name), this, oldName, x, $"Rename entity '{oldName}' to '{x}'"));
+            }, x => x != m_Name
             );
+
+            EnableCommand = new RelayCommand<bool>(x =>
+            {
+                var old = m_Enabled;
+                Enabled = x;
+
+                Project.UndoRedo.Add(new UndoRedoAction(nameof(Enabled), this, old, x, x ? $"Enable {Name} ": $"Disable {Name}"));
+            }
+           );
         }
 
         public Entity(Scene scene)

@@ -82,6 +82,7 @@ namespace ImEditor.GameProject
         public static void Save(Project project)
         {
             ImSerializer.ToFileXml<Project>(project, project.FullPath);
+            Logger.Log(MessageType.Info, $"Project saved to {project.FullPath}");
         }
 
         [OnDeserialized]

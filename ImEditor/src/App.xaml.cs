@@ -15,7 +15,7 @@ namespace ImEditor
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            this.StartupUri = new System.Uri("src/MainWindow.xaml", System.UriKind.Relative);
+            this.StartupUri = new System.Uri("MainWindow.xaml", System.UriKind.Relative);
         }
     }
 }

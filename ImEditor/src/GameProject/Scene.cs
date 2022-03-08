@@ -50,9 +50,7 @@ namespace ImEditor.GameProject
 
         [DataMember(Name = nameof(Entities))]
         private readonly ObservableCollection<Entity> m_Entities = new ObservableCollection<Entity>();
-
         public ReadOnlyObservableCollection<Entity> Entities { get; private set; }
-
         public ICommand AddEntityCommand { get; private set; }
         public ICommand RemoveEntityCommand { get; private set; }
 

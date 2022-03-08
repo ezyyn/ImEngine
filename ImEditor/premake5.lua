@@ -27,6 +27,6 @@ project "ImEditor"
 		"System.Xml",
 		"System.Xml.Linq",
 		"System.Runtime.Serialization",
-		"System.Numerics"
+		"System.Numerics",
 		"WindowsBase",
 	}
